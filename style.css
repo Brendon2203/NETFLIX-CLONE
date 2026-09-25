@@ -1,0 +1,153 @@
+body {
+    color: white;
+    background-color: black;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+}
+
+
+/* ÁREA PRINCIPAL */
+
+section {
+    position: relative;
+
+    height: 500px;
+    padding: 30px;
+
+    overflow: hidden;
+}
+
+
+/* VÍDEO */
+
+.video-background {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    top: 0;
+    left: 0;
+
+    z-index: 0;
+}
+
+
+/* GRADIENTE PRETO → TRANSPARENTE */
+
+.gradient {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+        to right,
+        black 0%,
+        black 20%,
+        rgba(0, 0, 0, 0.8) 40%,
+        transparent 75%
+    );
+
+    z-index: 1;
+}
+
+
+/* CONTEÚDO */
+
+.container {
+    position: relative;
+
+    width: 40%;
+
+    z-index: 2;
+}
+
+
+/* LOGO */
+
+.logo {
+    width: 100px;
+}
+
+
+/* TÍTULO */
+
+.title-movie {
+    color: white;
+    font-weight: 450;
+}
+
+
+/* INFORMAÇÕES */
+
+.box-match {
+    width: 60%;
+
+    display: flex;
+
+    justify-content: space-around;
+
+    align-items: center;
+}
+
+
+/* MATCH */
+
+.p-match {
+    color: #45D168 !important;
+}
+
+
+/* TEXTOS */
+
+.box-match p {
+    color: #888888;
+}
+
+
+/* TV-MA */
+
+.TV-MA {
+    background-color: #333333;
+
+    color: #888888;
+
+    padding: 0px 3px 0px 3px;
+
+    border-radius: 5px;
+}
+
+
+/* HD E 5.1 */
+
+.box-HD {
+    border-radius: 5px;
+
+    border: 1px solid white;
+
+    padding: 0px 3px 0px 3px;
+}
+
+
+/* SUBTÍTULO */
+
+.subtitle-movie {
+    display: block;
+
+    margin-top: 15px;
+}
+
+
+/* DESCRIÇÃO */
+
+.description {
+    color: #888888;
+
+    line-height: 1.5;
+}
