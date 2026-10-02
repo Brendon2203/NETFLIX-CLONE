@@ -3,17 +3,20 @@ body {
     background-color: black;
     font-family: "Roboto", sans-serif;
     margin: 0;
+    overflow-x:hidden;
 }
 
+*{
+    box-sizing: border-box;
+}
 
 /* ÁREA PRINCIPAL */
 
 .hero-section {
     position: relative;
-
+    min-height: 600px;
     height: 500px;
-    padding: 30px;
-
+    padding: 60px 5%;
     overflow: hidden;
 }
 
@@ -22,15 +25,11 @@ body {
 
 .video-background {
     position: absolute;
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
     top: 0;
     left: 0;
-
     z-index: 0;
 }
 
@@ -39,10 +38,8 @@ body {
 
 .gradient {
     position: absolute;
-
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
 
@@ -62,9 +59,7 @@ body {
 
 .container {
     position: relative;
-    
-    width: 40%;
-
+    width: min(500px,45%);
     z-index: 2;
 }
 
@@ -73,6 +68,7 @@ body {
 
 .logo {
     width: 100px;
+    max-width: 30vw;
 }
 
 
@@ -81,19 +77,19 @@ body {
 .title-movie {
     color: white;
     font-weight: 450;
+    font-size: clamp(30px, 4vw, 55px);
+    margin: 20px 0;
 }
 
 
 /* INFORMAÇÕES */
 
 .box-match {
-    width: 60%;
-
+    width: 100%;
     display: flex;
-
-    justify-content: space-around;
-
+    flex-wrap: wrap;
     align-items: center;
+    gap: 12px;
 }
 
 
@@ -101,6 +97,7 @@ body {
 
 .p-match {
     color: #45D168 !important;
+    font-weight: bold;
 }
 
 
@@ -108,6 +105,7 @@ body {
 
 .box-match p {
     color: #888888;
+    margin: 0;
 }
 
 
@@ -115,12 +113,9 @@ body {
 
 .TV-MA {
     background-color: #333333;
-
     color: #888888;
-
-    padding: 0px 3px 0px 3px;
-
-    border-radius: 5px;
+    padding: 2px 5px;
+    border-radius: 4px;
 }
 
 
@@ -128,10 +123,8 @@ body {
 
 .box-HD {
     border-radius: 5px;
-
     border: 1px solid white;
-
-    padding: 0px 3px 0px 3px;
+    padding: 2px 5px;
 }
 
 
@@ -139,8 +132,8 @@ body {
 
 .subtitle-movie {
     display: block;
-
-    margin-top: 15px;
+    margin-top: 20px;
+    font-size: 18px;
 }
 
 
@@ -148,49 +141,301 @@ body {
 
 .description {
     color: #888888;
-
+    max-width: 500px;
     line-height: 1.5;
 }
 
 
-/* PARTE DOS FILMES*/
-.movie-section{
-    height: 500px;
+/* =========================================
+   PARTE DOS FILMES
+========================================= */
+
+.movie-section {
+    position: relative;
+    z-index: 5;
+
+    /*
+       Faz os filmes subirem sobre o vídeo
+    */
+    margin-top: -150px;
+
+    padding: 0 5% 60px;
+
+    background: transparent;
+
+    /*
+       IMPORTANTE:
+       não colocar overflow:hidden aqui
+    */
 }
 
-.movie-container{
+
+/* TÍTULO */
+
+.movie-section h2 {
+    margin: 0 0 15px;
+
+    font-size: 24px;
+}
+
+
+/* =========================================
+   CARROSSEL
+========================================= */
+
+.movie-container {
     display: flex;
-    justify-content: start;
-    gap: 10px;
-    padding: 15px;
-    
-    
+    gap: 15px;
+
+    overflow-x: auto;
+    overflow-y: visible;
+
+    padding: 30px 25px 40px;
+
+    margin: -20px -25px 0;
+
+    scrollbar-width: none;
+
+    cursor: grab;
+
+    user-select: none;
+
+    scroll-behavior: smooth;
 }
 
-.movie-box{
-    
-    padding: 5px;
-    height: 180px;
+.movie-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Quando estiver arrastando */
+
+.movie-container.dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
+}
+
+
+/* CARDS */
+
+.movie-box {
+    flex: 0 0 250px;
+
+    position: relative;
+
     display: flex;
     flex-direction: column;
-    
-    
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    background-color: #181818;
+
+    transition: transform 0.3s ease;
+
+    z-index: 1;
 }
 
-.movie-box:hover{
-    background-color: white;
-    color: black;
-    transition: 0.5s ease;
-    
-}
-.img-remind{
-    width: 250px;
-    height: 150px;
+.movie-box:hover {
+    transform: scale(1.08);
+    z-index: 20;
 }
 
-.button-remind{
+
+/* =========================================
+   IMAGEM
+========================================= */
+
+.img-remind {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+
+    /* impede arrastar a imagem */
+    user-select: none;
+    -webkit-user-drag: none;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   BOTÃO
+========================================= */
+
+.button-remind {
+
     all: unset;
+
     text-align: center;
+
     padding: 10px;
-    
+
+    background-color: #181818;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.movie-box:hover {
+
+    transform: scale(1.08);
+
+    /*
+       Faz o card ficar acima dos outros
+    */
+    z-index: 20;
+
+    /*
+       Sombra ajuda a destacar
+    */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.movie-box:hover .button-remind {
+
+    background-color: #333;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .hero-section {
+        min-height: 550px;
+        height: 550px;
+        padding: 50px 5%;
+    }
+
+    .container {
+        width: 55%;
+    }
+
+    .movie-section {
+        margin-top: -100px;
+    }
+
+    .movie-container {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+
+    .movie-box {
+        flex: 0 0 220px;
+    }
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 600px) {
+
+    .hero-section {
+        min-height: 550px;
+        height: 550px;
+        padding: 40px 20px;
+    }
+
+    .container {
+        width: 80%;
+    }
+
+    .logo {
+        width: 80px;
+    }
+
+    .title-movie {
+        font-size: 32px;
+        margin: 15px 0;
+    }
+
+    .box-match {
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .subtitle-movie {
+        font-size: 16px;
+    }
+
+    .description {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    .movie-section {
+
+        margin-top: -70px;
+
+        padding: 0 20px 40px;
+    }
+
+    .movie-section h2 {
+        font-size: 20px;
+    }
+
+    .movie-container {
+
+        gap: 10px;
+
+        padding: 20px 15px 30px;
+
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .movie-box {
+
+        flex: 0 0 190px;
+    }
+
+    /*
+       No celular não precisa aumentar
+       ao passar o dedo
+    */
+    .movie-box:hover {
+        transform: none;
+    }
+}
+
+
+/* =========================================
+   CELULAR PEQUENO
+========================================= */
+
+@media (max-width: 400px) {
+
+    .hero-section {
+        min-height: 500px;
+        height: 500px;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .title-movie {
+        font-size: 28px;
+    }
+
+    .movie-section {
+        margin-top: -50px;
+    }
+
+    .movie-box {
+        flex: 0 0 170px;
+    }
 }
