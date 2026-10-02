@@ -8,7 +8,7 @@ body {
 
 /* ÁREA PRINCIPAL */
 
-section {
+.hero-section {
     position: relative;
 
     height: 500px;
@@ -62,7 +62,7 @@ section {
 
 .container {
     position: relative;
-
+    
     width: 40%;
 
     z-index: 2;
@@ -150,4 +150,47 @@ section {
     color: #888888;
 
     line-height: 1.5;
+}
+
+
+/* PARTE DOS FILMES*/
+.movie-section{
+    height: 500px;
+}
+
+.movie-container{
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+    padding: 15px;
+    
+    
+}
+
+.movie-box{
+    
+    padding: 5px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.movie-box:hover{
+    background-color: white;
+    color: black;
+    transition: 0.5s ease;
+    
+}
+.img-remind{
+    width: 250px;
+    height: 150px;
+}
+
+.button-remind{
+    all: unset;
+    text-align: center;
+    padding: 10px;
+    
 }
