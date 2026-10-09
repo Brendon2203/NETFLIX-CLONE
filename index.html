@@ -96,7 +96,7 @@
             <!--Breaking bad-->
             <div class="movie-box">
                 <img class="img-remind" src="https://wallpapers.com/images/featured/the-mentalist-e93k825ge5cmxqp9.jpg" alt="">
-                <button class="button-remind"> <i class="fa-regular fa-bell"></i>Remind me</button>
+                <button class="button-remind"> <i class="fa-regular fa-bell"></i> Remind me</button>
             </div>
 
         </div>
@@ -154,6 +154,30 @@ slider.addEventListener('mousemove', (e) => {
     slider.scrollLeft = scrollLeft - walk;
 
 });
+
+const remindButtons = document.querySelectorAll('.button-remind');
+
+remindButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const icon = button.querySelector('i');
+
+        if (button.classList.contains('active')) {
+            // Volta ao estado original
+            button.classList.remove('active');
+
+            icon.className = 'fa-regular fa-bell';
+            button.lastChild.textContent = ' Remind me';
+        } else {
+            // Ativa o lembrete
+            button.classList.add('active');
+
+            icon.className = 'fa-solid fa-check';
+            button.lastChild.textContent = ' Reminder set';
+        }
+    });
+});
+
+
 
 </script>
 
