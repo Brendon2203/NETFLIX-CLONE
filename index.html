@@ -17,7 +17,7 @@
     <section class="hero-section">
 
         <!-- VÍDEO DE FUNDO -->
-        <video class="video-background" autoplay muted loop playsinline>
+        <video id="background-video" class="video-background" autoplay muted loop playsinline>
             <source src="video/YTDown.com_YouTube_13-Reasons-Why-Trailer-da-temporada-01-L_Media_JSnlVg5CcJ0_001_1080p.mp4" type="video/mp4">
         </video>
 
@@ -34,17 +34,17 @@
                 class="logo"
             >
 
-            <h1 class="title-movie">13 REASONS WHY</h1>
+            <h1 id="movie-title" class="title-movie">13 REASONS WHY</h1>
 
             <div class="box-match">
 
-                <p class="p-match">97% Match</p>
+                <p id="movie-match" class= "p-match">97% Match</p>
 
-                <p class="text-match">2018</p>
+                <p id="movie-year" class="text-match">2018</p>
 
                 <p class="TV-MA">TV-MA</p>
 
-                <p class="text-match">2 Season</p>
+                <p id="movie-seasons" class="text-match">2 Season</p>
 
                 <p class="box-HD">HD</p>
 
@@ -52,11 +52,11 @@
 
             </div>
 
-            <b class="subtitle-movie">
+            <b id="movie-subtitle" class="subtitle-movie">
                 Season 3 Coming Friday
             </b>
 
-            <p class="description">
+            <p id="movie-description" class="description">
                 Lorem ipsum dolor sit, amet consectetur adipisicing 
                 elit. Exercitationem eius placeat vel sint impedit commodi
                 non unde, accusamus error nisi, eaque quidem sequi optio 
@@ -71,31 +71,31 @@
         <h2>Coming This Week</h2>
         <div class="movie-container">
             <!--13 RESON WHY-->
-            <div class="movie-box">
-                <img class="img-remind" src="https://cvv.org.br/wp-content/uploads/2023/05/segunda-temporada-de-13-reasons-why-980x513-1.jpg.pagespeed.ce_.w4ALLIPVsj-1.jpg" alt="">
+            <div class="movie-box" data-movie="13-reasons">
+                <img class="img-remind" src="https://cvv.org.br/wp-content/uploads/2023/05/segunda-temporada-de-13-reasons-why-980x513-1.jpg.pagespeed.ce_.w4ALLIPVsj-1.jpg" alt="13 RESON WHY">
                 <button class="button-remind"><i class="fa-regular fa-bell"></i> Remind me</button>
             </div>
             <!--Breaking bad-->
-            <div class="movie-box">
-                <img class="img-remind" src="https://i0.wp.com/eoh.com.br/wp-content/uploads/21225_breaking_bad.jpg?fit=1920%2C1080&ssl=1" alt="">
+            <div class="movie-box" data-movie="breakin-bad"> 
+                <img class="img-remind" src="https://i0.wp.com/eoh.com.br/wp-content/uploads/21225_breaking_bad.jpg?fit=1920%2C1080&ssl=1" alt="BREAKIN BAD">
                 <button class="button-remind"> <i class="fa-regular fa-bell"></i> Remind me</button>
             </div>
 
             <!--La casa de papel-->
-            <div class="movie-box">
-                <img class="img-remind" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT18kIHJWQ2eZsCE2uWD73TI2AdvP4DMnoIlTGrg38lWax7Cr_xnGLckdtC&s=10" alt="">
+            <div class="movie-box" data-movie="la-papel" >
+                <img class="img-remind" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT18kIHJWQ2eZsCE2uWD73TI2AdvP4DMnoIlTGrg38lWax7Cr_xnGLckdtC&s=10" alt="LA CASA DE PAPEL">
                 <button class="button-remind"><i class="fa-regular fa-bell"></i> Remind me</button>
             </div>
 
             <!--Better call saul-->
-            <div class="movie-box">
-                <img class="img-remind" src="https://www.designyourway.net/blog/wp-content/uploads/2025/07/Better-Call-Saul-Featured_.jpg" alt="">
+            <div class="movie-box" data-movie="better-call-saul">
+                <img class="img-remind" src="https://www.designyourway.net/blog/wp-content/uploads/2025/07/Better-Call-Saul-Featured_.jpg" alt="BETTER CALL SAUL">
                 <button class="button-remind"><i class="fa-regular fa-bell"></i> Remind me</button>
             </div>
 
-            <!--Breaking bad-->
-            <div class="movie-box">
-                <img class="img-remind" src="https://wallpapers.com/images/featured/the-mentalist-e93k825ge5cmxqp9.jpg" alt="">
+            <!--The Mentalist-->
+            <div class="movie-box" data-movie="the-mentalist" >
+                <img class="img-remind" src="https://wallpapers.com/images/featured/the-mentalist-e93k825ge5cmxqp9.jpg" alt="THE MENTALIST">
                 <button class="button-remind"> <i class="fa-regular fa-bell"></i> Remind me</button>
             </div>
 
@@ -103,83 +103,7 @@
 
     </section>
 
-    <script>
-
-const slider = document.querySelector('.movie-container');
-
-let isDown = false;
-let startX;
-let scrollLeft;
-
-slider.addEventListener('mousedown', (e) => {
-
-    isDown = true;
-
-    slider.classList.add('dragging');
-
-    startX = e.pageX - slider.offsetLeft;
-
-    scrollLeft = slider.scrollLeft;
-});
-
-
-slider.addEventListener('mouseleave', () => {
-
-    isDown = false;
-
-    slider.classList.remove('dragging');
-
-});
-
-
-slider.addEventListener('mouseup', () => {
-
-    isDown = false;
-
-    slider.classList.remove('dragging');
-
-});
-
-
-slider.addEventListener('mousemove', (e) => {
-
-    if (!isDown) return;
-
-    e.preventDefault();
-
-    const x = e.pageX - slider.offsetLeft;
-
-    const walk = (x - startX) * 2;
-
-    slider.scrollLeft = scrollLeft - walk;
-
-});
-
-const remindButtons = document.querySelectorAll('.button-remind');
-
-remindButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        const icon = button.querySelector('i');
-
-        if (button.classList.contains('active')) {
-            // Volta ao estado original
-            button.classList.remove('active');
-
-            icon.className = 'fa-regular fa-bell';
-            button.lastChild.textContent = ' Remind me';
-        } else {
-            // Ativa o lembrete
-            button.classList.add('active');
-
-            icon.className = 'fa-solid fa-check';
-            button.lastChild.textContent = ' Reminder set';
-        }
-    });
-});
-
-
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
