@@ -12,20 +12,83 @@
         },
 
         "breaking-bad":{
-            title:"Breaking Bad",
+            title:"BREAKING BAD",
             match:"99% Match",
             year: "2008",
             seasons: "5 Seasons",
             subtitle:" Remember my name.",
             description:"A chemistry teacher diagnosed with cancer starts producing methamphetamine with a former student to secure his family's financial future.",
-            video:"video/breaking-bad"
+            video:"video/breaking-bad.mp4"
         },
 
-}
+        "la-papel":{
+            title:"LA CASA DE PAPEL",
+            match:"96% Match",
+            year: "2017",
+            seasons: "5 Seasons",
+            subtitle:" The perfect robbery.",
+            description:"A mysterious man know as The Professor recruits eight criminals to carry out an ambitious plan to rob the Royal Mint of Spain.",
+            video:"video/la-casa-de-papel.mp4"
+        },
+
+         "better-call-saul":{
+            title:"BETTER CALL SAUL",
+            match:"98% Match",
+            year: "2015",
+            seasons: "6 Seasons",
+            subtitle:" Lawyers aren't born. They're made.",
+            description:"Follow the transformation of Jimmy McGill into the morally challenged lawyer Saul Goodman.",
+            video:"video/better-call-saul.mp4"
+        },
+
+        "the-mentalist": {
+        title: "THE MENTALIST",
+        match: "95% Match",
+        year: "2008",
+        rating: "TV-14",
+        seasons: "7 Seasons",
+        subtitle: "Observe. Deduce. Solve.",
+        description: "Patrick Jane uses his extraordinary observation skills to help the California Bureau of Investigation solve complex crimes.",
+        video: "video/the-mentalist.mp4"
+    }
+};
 
 
   // Seleciona o elemento HTML que contém os filmes.
     const slider = document.querySelector('.movie-container');
+    const backgroundVideo = document.querySelector('#background-video');
+
+    function showMovie(movieId) {
+        const selectedMovie = movie[movieId];
+        if (!selectedMovie) return;
+
+        document.querySelector('#movie-title').textContent = selectedMovie.title;
+        document.querySelector('#movie-match').textContent = selectedMovie.match;
+        document.querySelector('#movie-year').textContent = selectedMovie.year;
+        document.querySelector('#movie-rating').textContent = selectedMovie.rating || 'TV-MA';
+        document.querySelector('#movie-seasons').textContent = selectedMovie.seasons;
+        document.querySelector('#movie-subtitle').textContent = selectedMovie.subtitle.trim();
+        document.querySelector('#movie-description').textContent = selectedMovie.description;
+
+        backgroundVideo.querySelector('source').src = selectedMovie.video;
+        backgroundVideo.load();
+    }
+
+    slider.querySelectorAll('.movie-box').forEach((card) => {
+        card.tabIndex = 0;
+        card.setAttribute('aria-label', `Ver detalhes de ${movie[card.dataset.movie].title}`);
+
+        card.addEventListener('click', (event) => {
+            if (event.target.closest('.button-remind')) return;
+            showMovie(card.dataset.movie);
+        });
+
+        card.addEventListener('keydown', (event) => {
+            if (event.target !== card || (event.key !== 'Enter' && event.key !== ' ')) return;
+            event.preventDefault();
+            showMovie(card.dataset.movie);
+        });
+    });
 
     // Indica se o usuário está arrastando a lista.
     let isDown = false;

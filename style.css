@@ -67,7 +67,7 @@ body {
 /* LOGO */
 
 .logo {
-    width: 100px;
+    width: 50px;
     max-width: 30vw;
 }
 
@@ -239,6 +239,11 @@ body {
 .movie-box:hover {
     transform: scale(1.08);
     z-index: 20;
+}
+
+.movie-box:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
 }
 
 
